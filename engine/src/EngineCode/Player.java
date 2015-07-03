@@ -13,10 +13,16 @@ import java.util.Scanner;
 public class Player extends FieldActor {
     private Controls controls;
 
-    public Player(String dirName) {
-        super(dirName);
+    public Player() {
+        Scanner configParser = new Scanner(getClass().getClassLoader().getResourceAsStream("playerConfig.txt"));
 
-        controls = new Controls(getClass().getClassLoader().getResourceAsStream(dirName + "/controls.txt"));
+        super.initialize(GameDatabase.spriteSets.get(configParser.nextLine().split(":")[1]));
+
+        String[] importedControls = new String[5];
+        for (int i = 0; i < 5; i++)
+            importedControls[i] = configParser.nextLine().split(":")[1];
+
+        controls = new Controls(importedControls);
     }
 
     public EventHandler<KeyEvent> keyBoardListener() {
@@ -43,18 +49,12 @@ public class Player extends FieldActor {
     private class Controls {
         private String up, down, left, right, interact;
 
-        public Controls(InputStream inStream) {
-            try {
-                Scanner fileReader = new Scanner(inStream);
-
-                up = fileReader.nextLine().split(":")[1];
-                down = fileReader.nextLine().split(":")[1];
-                left = fileReader.nextLine().split(":")[1];
-                right = fileReader.nextLine().split(":")[1];
-                interact = fileReader.nextLine().split(":")[1];
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        public Controls(String[] controls) {
+            up = controls[0];
+            down = controls[1];
+            left = controls[2];
+            right = controls[3];
+            interact = controls[4];
         }
 
         public void keyPressed(String keyCode) {

@@ -1,5 +1,7 @@
 package EngineCode;
 
+import java.util.ArrayList;
+
 /**
  * Created by benra_000 on 5/15/2015.
  */
@@ -11,9 +13,8 @@ public abstract class FieldActor extends FieldNode {
     protected Action currentAction;
     protected Direction currentDirection;
 
-    public FieldActor(String dirName) {
-        super();
-        spriteSet = new GenericSpriteSet(dirName);
+    public void initialize(GenericSpriteSet sprites) {
+        spriteSet = sprites;
         currentDirection = new Direction(Direction.DOWN);
         currentAction = new Action(Action.IDLE);
         animationInvoker = 10;
@@ -110,8 +111,11 @@ public abstract class FieldActor extends FieldNode {
     }
 
     public void setCurrentDirection(Direction currentDirection) {
-        this.currentDirection = currentDirection;
-        spriteSet.turn(currentDirection);
+        if (currentDirection != this.currentDirection) {
+            this.currentDirection = currentDirection;
+            spriteSet.turn(currentDirection);
+            super.setImage(spriteSet.rotateImage());
+        }
     }
 
     abstract boolean isFriendly();

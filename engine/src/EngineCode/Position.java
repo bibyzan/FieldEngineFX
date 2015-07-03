@@ -1,5 +1,7 @@
 package EngineCode;
 
+import java.util.ArrayList;
+
 /**
  * Created by benra_000 on 5/19/2015.
  */
@@ -9,6 +11,17 @@ public class Position {
     public Position(int row, int col) {
         this.row = row;
         this.col = col;
+    }
+
+    public ArrayList<Position> getAdjacentPositions() {
+        ArrayList<Position> positions = new ArrayList<>();
+
+        for (int r = row - 1; r <= row + 1; r++)
+            for (int c = col - 1; c <= col + 1; c++)
+                if (row != r || col != c)
+                    positions.add(new Position(r,c));
+
+        return positions;
     }
 
     public int getRow() {

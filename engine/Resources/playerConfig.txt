@@ -1,3 +1,4 @@
+SPRITE SET:Link
 UP:w
 DOWN:s
 LEFT:a

@@ -35,23 +35,6 @@ public final class Direction {
                 return false;
     }
 
-    public static ArrayList<Direction> getDirectionsFromSides(String sides) {
-        ArrayList<Direction> sidesBlocked = new ArrayList<>();
-
-        if (!sides.equals("N"))
-            for (char c: sides.toCharArray())
-                if (c == 'A')
-                    sidesBlocked.add(Direction.ALL);
-                else if (c == 'L' || c == 'W')
-                    sidesBlocked.add(Direction.LEFT);
-                else if (c == 'U' || c == 'N')
-                    sidesBlocked.add(Direction.UP);
-                else if (c == 'R' || c == 'E')
-                    sidesBlocked.add(Direction.RIGHT);
-
-        return sidesBlocked;
-    }
-
     public int getDirection() {
         return direction;
     }

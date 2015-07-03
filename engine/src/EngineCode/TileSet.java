@@ -22,7 +22,7 @@ public class TileSet extends HashMap<String, FieldObject> {
 
             Image image = new Image(getClass().getClassLoader().getResourceAsStream(dirName + "/" + imagePath + ".png"));
             FieldObject temp = new FieldObject(image);
-            temp.setBlockedSides(Direction.getDirectionsFromSides(boundaries));
+            temp.getArea().setSidesFromString(boundaries);
 
             super.put(imagePath, temp);
         }

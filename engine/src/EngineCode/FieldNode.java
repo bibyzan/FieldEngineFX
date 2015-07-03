@@ -17,7 +17,6 @@ public abstract class FieldNode extends ImageView {
         return area.getPoints();
     }
 
-
     public Direction getDirectionFacingNode(FieldNode fieldNode) {
         Point2D centerPoint = calcCenterPoint();
         Direction facingDirection;
@@ -39,6 +38,10 @@ public abstract class FieldNode extends ImageView {
         double y = getY() + (getHeight() / 2);
 
         return new Point2D(x,y);
+    }
+
+    public Point2D getCornerPoint() {
+        return new Point2D(getX(), getY());
     }
 
     public boolean isColliding(FieldNode subject) {
@@ -67,6 +70,14 @@ public abstract class FieldNode extends ImageView {
 
     public double getHeight() {
         return height;
+    }
+
+    public Boundary getArea() {
+        return area;
+    }
+
+    public void setArea(Boundary area) {
+        this.area = area;
     }
 
     public void setLocation(double x, double y) {

@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -46,6 +47,15 @@ public class Field extends Pane {
                 return position;
 
         return null;
+    }
+
+    public ArrayList<Boundary> getBoundariesAroundPoint(Point2D point) {
+        ArrayList<Boundary> boundaries = new ArrayList<>();
+
+        for (FieldObject object: grid.getNearbyValues(calcPositionAtPoint(point)))
+            boundaries.add(object.getArea());
+
+        return boundaries;
     }
 
     public Grid<FieldObject> getGrid() {

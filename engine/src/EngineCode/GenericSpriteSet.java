@@ -18,12 +18,11 @@ public class GenericSpriteSet {
         InputStream inStream = getClass().getClassLoader().getResourceAsStream("genericSpriteTemplate.txt");
         Scanner streamScanner = new Scanner(inStream);
 
-        String path = dirName + "/sprites";
-        idle = new SpriteList(path + "/idle", streamScanner.nextLine().split(" "));
-        walkLeft = new SpriteList(path + "/walkLeft", streamScanner.nextLine().split(" "));
-        walkRight = new SpriteList(path + "/walkRight", streamScanner.nextLine().split(" "));
-        walkUp = new SpriteList(path + "/walkUp", streamScanner.nextLine().split(" "));
-        walkDown = new SpriteList(path + "/walkDown", streamScanner.nextLine().split(" "));
+        idle = new SpriteList(dirName + "/idle", streamScanner.nextLine().split(" "));
+        walkLeft = new SpriteList(dirName + "/walkLeft", streamScanner.nextLine().split(" "));
+        walkRight = new SpriteList(dirName + "/walkRight", streamScanner.nextLine().split(" "));
+        walkUp = new SpriteList(dirName + "/walkUp", streamScanner.nextLine().split(" "));
+        walkDown = new SpriteList(dirName + "/walkDown", streamScanner.nextLine().split(" "));
 
         currentList = idle;
     }

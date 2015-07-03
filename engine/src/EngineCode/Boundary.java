@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * Created by benra_000 on 5/17/2015.
  */
 public class Boundary {
+    private ArrayList<Direction> boundaries;
     private double rightBound, leftBound, topBound, bottomBound;
 
     public Boundary(double rightBound, double leftBound, double topBound, double bottomBound) {
@@ -66,6 +67,19 @@ public class Boundary {
         return points;
     }
 
+    public boolean isColliding(Boundary subject) {
+        if (boundaries != null) {
+            for (Direction boundary : boundaries) {
+                if (boundary.equals(Direction.ALL))
+                    return isContained(subject);
+                else if (isContained(getASide(boundary)))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     public boolean isContained(Point2D point) {
         return point.getX() >= leftBound && point.getX() <= rightBound &&
                 point.getY() >= topBound && point.getY() <= bottomBound;
@@ -102,6 +116,23 @@ public class Boundary {
     public void changeInY(double newY, FieldNode fieldNode) {
         topBound = newY;
         bottomBound = newY + fieldNode.getHeight();
+    }
+
+    public void setSidesFromString(String sides) {
+        boundaries = new ArrayList<>();
+
+        if (!sides.equals("N"))
+            for (char c: sides.toCharArray())
+                if (c == 'A')
+                    boundaries.add(Direction.ALL);
+                else if (c == 'L' || c == 'W')
+                    boundaries.add(Direction.LEFT);
+                else if (c == 'U' || c == 'N')
+                    boundaries.add(Direction.UP);
+                else if (c == 'R' || c == 'E')
+                    boundaries.add(Direction.RIGHT);
+                else if (c == 'D' || c == 'S')
+                    boundaries.add(Direction.DOWN);
     }
 
     public double getRightBound() {
