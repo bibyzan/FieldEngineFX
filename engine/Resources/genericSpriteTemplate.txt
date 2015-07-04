@@ -1,5 +1,0 @@
-i1 i2
-wL1 wL2
-wR1 wR2
-wU1 wU2
-wD1 wD2

@@ -1,0 +1,6 @@
+Verdana Bold Italic,22
+Verdana Italic,12
+67 202 247
+39 184 77
+184 39 55
+16 16
