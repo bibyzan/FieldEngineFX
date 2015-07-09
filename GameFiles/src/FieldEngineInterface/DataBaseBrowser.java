@@ -1,28 +1,18 @@
 package FieldEngineInterface;
 
 
-import EngineCode.Position;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 
 import java.io.File;
-import java.util.Observable;
-import java.util.Scanner;
 
 /**
  * Created by Ben Rasmussen on 7/2/2015.
@@ -43,7 +33,7 @@ public class DataBaseBrowser extends BorderPane {
 
 		BrowserToggleButton tileSets = new BrowserToggleButton("Tile Sets", browse);
 		tileSets.setSelected(true);
-		tileSets.runCode();
+		tileSets.buttonClick();
 
 		HBox mainPicker = new HBox();
 		BrowserToggleButton spriteSets = new BrowserToggleButton("Sprite Sets", browse);
@@ -71,7 +61,7 @@ public class DataBaseBrowser extends BorderPane {
 			super.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
-					runCode();
+					buttonClick();
 				}
 			});
 			super.setWidth(super.getMaxWidth());
@@ -86,13 +76,14 @@ public class DataBaseBrowser extends BorderPane {
 			setBottom(null);
 		}
 
-		public void runCode() {
+		public void buttonClick() {
 			reset();
 
 			setLeft(browser);
-			if (name.equals("Tile Sets"))
+			if (name.equals("Tile Sets")) {
 				fillLocalBrowser("TileSets");
-			else if (name.equals("Sprite Sets"))
+
+			} else if (name.equals("Sprite Sets"))
 				fillLocalBrowser("SpriteSets");
 			else if (name.equals("Background Music")) {
 				fillLocalBrowser("BGMusic");
@@ -103,14 +94,17 @@ public class DataBaseBrowser extends BorderPane {
 
 		}
 
-		public void setFileViewer(String selected) {
+		public void setFileViewer(String selected) throws Exception {
+			browser.setPrefWidth(100);
+
 			if (name.equals("Sprite Sets")) {
 				setCenter(new SpriteBrowser(selected));
-				((SpriteBrowser)getCenter()).setPadding(new Insets(20, 20, 20, 20));
-				browser.setPrefWidth(100);
+				((SpriteBrowser) getCenter()).setPadding(new Insets(20, 20, 20, 20));
 
 				//setBottom(((SpriteBrowser) getCenter()).getPreview());
 				//((BorderPane)getBottom()).setPadding(new Insets(0, 150, 0 , 150));
+			} else if (name.equals("Tile Sets")) {
+				setCenter(new TileSetBuilder(selected));
 			}
 		}
 
@@ -131,7 +125,9 @@ public class DataBaseBrowser extends BorderPane {
 				@Override
 				public void handle(MouseEvent event) {
 					for (String selected: browser.getSelectionModel().getSelectedItems())
-						setFileViewer(selected);
+						try {
+							setFileViewer(selected);
+						} catch (Exception e) { e.printStackTrace(); }
 				}
 			});
 		}

@@ -16,6 +16,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Field Engine Assistant");
 		primaryStage.setScene(new Scene(new FieldEngineInterface()));
+		primaryStage.setWidth(550);
+		primaryStage.setHeight(600);
 		primaryStage.show();
 	}
 }
