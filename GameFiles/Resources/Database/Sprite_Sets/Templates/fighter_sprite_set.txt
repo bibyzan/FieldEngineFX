@@ -1,0 +1,9 @@
+idle:i1 i2
+walk_left:wL1 wL2
+walk_right:wR1 wR2
+walk_up:wU1 wU2
+walk_down:wD1 wD2
+swing_right:sR1 sR2
+swing_left:sL1 sL2
+swing_up:sU1 sU2
+swing_down:sD1 sD2

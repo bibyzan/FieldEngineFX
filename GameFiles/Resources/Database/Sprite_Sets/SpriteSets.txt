@@ -1,0 +1,2 @@
+Soldier:generic_sprite_set
+Link:fighter_sprite_set

@@ -1,0 +1,4 @@
+block:A
+tile:N
+grass:N
+stone_statue:A

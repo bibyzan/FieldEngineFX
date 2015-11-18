@@ -1,0 +1,11 @@
+TileSet:Castle
+
+Layer:
+	block block block block block block block block
+	block tile tile tile tile tile tile grass
+	block tile block tile tile block tile grass
+	block tile tile grass grass tile tile stone_statue
+	block tile block grass grass tile tile stone_statue
+	block tile block tile grass block tile grass
+	block tile tile tile grass grass grass grass
+	block block block block block block block block

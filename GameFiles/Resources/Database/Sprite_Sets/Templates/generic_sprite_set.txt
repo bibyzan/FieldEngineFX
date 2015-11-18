@@ -1,0 +1,5 @@
+idle:i1 i2
+walk_left:wL1 wL2
+walk_right:wR1 wR2
+walk_up:wU1 wU2
+walk_down:wD1 wD2

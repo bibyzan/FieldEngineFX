@@ -1,0 +1,8 @@
+window_width:400
+window_height:400
+grid_height:8
+grid_width:8
+body_font_name:Andalus
+body_font_size:20
+title_font_name:Andalus
+title_font_size:30
